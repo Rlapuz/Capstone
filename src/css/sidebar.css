@@ -1,0 +1,20 @@
+.nav-link:hover {
+  background-color: #fdffa9;
+  border-radius: 10px;
+}
+/* text */
+.nav-link:hover span {
+  color: black;
+}
+/* icon */
+.nav-link:hover .bi {
+  color: black;
+}
+
+/* when active */
+.nav-link.active {
+  font-weight: bold;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  color: black !important ;
+}
