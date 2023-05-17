@@ -3,10 +3,17 @@ import { Sidebar } from "../components/Sidebar";
 import { Navbar } from "../components/Navbar";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-// import { MainDashboard } from "../components/Main-pages/MainDashboard";
+import { MainDashboard } from "../components/Main-pages/MainDashboard";
 
 export const Dashboard = () => {
   const [selectedNavItem, setSelectedNavItem] = useState("Dashboard");
+
+  // State variable for selected files
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  //
+  const handleFilesSelected = (files) => {
+    setSelectedFiles(files);
+  };
 
   // for animation
   const location = useLocation();
@@ -26,8 +33,12 @@ export const Dashboard = () => {
           <Sidebar setSelectedNavItem={setSelectedNavItem} />
         </div>
         <div className="col-md-10">
-          <Navbar selectedNavItem={selectedNavItem} />
-          {/* <MainDashboard /> */}
+          <Navbar
+            selectedNavItem={selectedNavItem}
+            // props from Navbar
+            handleFilesSelectedProp={handleFilesSelected}
+          />
+          <MainDashboard selectedFiles={selectedFiles} />
         </div>
       </div>
     </motion.div>

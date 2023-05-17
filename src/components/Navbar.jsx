@@ -6,12 +6,10 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 // Import Framer Motion for animation on main pages
 import { motion, AnimatePresence } from "framer-motion";
 
-export const Navbar = ({ selectedNavItem }) => {
+export const Navbar = ({ selectedNavItem, handleFilesSelectedProp }) => {
   // Ref for file input and state for profile image
   const fileInputRef = useRef(null);
   const [imageSrc, setImageSrc] = useState(null);
-  // Initialize state to hold selected files
-  const [selectedFiles, setSelectedFiles] = useState([]);
 
   // Handle upload button click
   const handleUploadClick = () => {
@@ -34,10 +32,12 @@ export const Navbar = ({ selectedNavItem }) => {
     setSelectedSort(sortOption);
   };
 
+  // Initialize state to hold selected files
+  const [selectedFiles] = useState([]);
   // Handle file selection for "Add Files" button
   const handleFilesSelected = (event) => {
     const files = Array.from(event.target.files);
-    setSelectedFiles(files);
+    handleFilesSelectedProp(files);
   };
 
   return (
@@ -106,7 +106,7 @@ export const Navbar = ({ selectedNavItem }) => {
                 Add Files
               </label>
             </div>
-            {/* Render selected files I props this to my components of main */}
+            {/* Render selected files */}
             {selectedFiles.length > 0 && (
               <ul>
                 {selectedFiles.map((file) => (
